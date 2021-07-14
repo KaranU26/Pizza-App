@@ -6,6 +6,12 @@
   </ion-toolbar>
 </ion-header>
 
+<style>
+  .highlight {
+     background-color: #FFFF33 !important;
+  }
+  </style>
+
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -74,6 +80,7 @@
     </ion-row>
   </ion-grid>
   <ion-grid>
+    <ion-row>
     <ion-col>
       <ion-label>Topping:</ion-label>
       <ion-label>0</ion-label>
@@ -85,5 +92,17 @@
         </ion-item>
       </ion-list>
     </ion-col>
+    <ion-col>
+      <ion-label>Size:</ion-label>
+      <ion-label>0</ion-label>
+      <ion-list (click)="selectSize(size)">
+        <ion-item *ngFor="let size of sizes" (click)="onClick(size)" >
+          <ion-label *ngIf="isSelected(size)">
+            {{size.name}}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
   </ion-grid>
 </ion-content>

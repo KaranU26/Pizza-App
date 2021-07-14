@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Toppings } from '../toppings/toppings.model';
 import { ToppingsService } from '../toppings/toppings.service';
+import { Sizes } from '../size/sizes.model';
+import { SizesService } from '../size/sizes.service';
 
 @Component({
   selector: 'app-home',
@@ -9,12 +11,23 @@ import { ToppingsService } from '../toppings/toppings.service';
 })
 export class HomePage {
   toppings: Toppings[];
-  constructor(private toppingsService: ToppingsService) {}
+  sizes: Sizes[];
+  itemSelected: any;
+  constructor(private toppingsService: ToppingsService, private sizesService: SizesService) {}
 
-  ngOnIntit(){
-    this .toppings = this.toppingsService.getAllToppings();
+  ngOnInit(){
+    this.toppings = this.toppingsService.getAllToppings();
+    this.sizes = this.sizesService.getAllSizes();
   }
 
   ionViewWillEnter(){ }
 
+  onClick(size){
+    if(this.isSelected(size)){
+      this.itemSelected = null;
+  }else{
+      this.itemSelected = size;
+  }
+  return this.itemSelected === size;
+}
 }

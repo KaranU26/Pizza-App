@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Toppings } from '../toppings/toppings.model';
+import { ToppingsService } from '../toppings/toppings.service';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  toppings: Toppings[];
+  constructor(private toppingsService: ToppingsService) {}
 
-  constructor() {}
+  ngOnIntit(){
+    this .toppings = this.toppingsService.getAllToppings();
+  }
+
+  ionViewWillEnter(){ }
 
 }

@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="primary">
+  <ion-toolbar color="danger">
     <ion-title>
       Pizza App
     </ion-title>
@@ -31,7 +31,7 @@
     <ion-row>
       <ion-col>
         <ion-label> Quantity:</ion-label>
-        <ion-label>{{numberSelected}}</ion-label>
+        <ion-label> {{numberSelected}}</ion-label>
       </ion-col>
     </ion-row>
     <ion-row style="height: 60px;">
@@ -83,7 +83,7 @@
     <ion-row>
     <ion-col>
       <ion-label>Topping:</ion-label>
-      <ion-label>{{toppingsUpdate}}</ion-label>
+      <ion-label> {{toppingsUpdate}}</ion-label>
       <ion-list>
         <ion-item>
           <ion-select placeholder="Toppings" (ionChange)="toppingValue($event)">
@@ -94,7 +94,7 @@
     </ion-col>
     <ion-col>
       <ion-label>Size:</ion-label>
-      <ion-label >{{sizeUpdate}}</ion-label>
+      <ion-label > {{sizeUpdate}}</ion-label>
       <ion-list>
         <ion-item>
           <ion-select placeholder="Sizes" (ionChange)="sizeValue($event)">

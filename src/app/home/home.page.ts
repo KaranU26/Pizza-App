@@ -1,8 +1,10 @@
+import { Orders } from './../orders/orders.model';
 import { Component } from '@angular/core';
 import { Toppings } from '../toppings/toppings.model';
 import { ToppingsService } from '../toppings/toppings.service';
 import { Sizes } from '../size/sizes.model';
 import { SizesService } from '../size/sizes.service';
+import { OrderService } from '../orders/orders.service';
 
 @Component({
   selector: 'app-home',
@@ -12,10 +14,15 @@ import { SizesService } from '../size/sizes.service';
 export class HomePage {
   toppings: Toppings[];
   sizes: Sizes[];
+  orders: Orders[];
   sizeUpdate: string;
   toppingsUpdate: string;
   itemSelected: any;
   numberSelected: number;
+  toppingsPrice: number;
+  sizePrice: number;
+  orderTotalPrice: number;
+  errorMessage: 'Quantity Value is 0';
   constructor(private toppingsService: ToppingsService, private sizesService: SizesService) {}
 
   ngOnInit(){
@@ -27,6 +34,7 @@ export class HomePage {
 
   sizeValue($event){
     this.sizeUpdate = $event.target.value;
+
   }
 
 
@@ -70,6 +78,19 @@ export class HomePage {
   }
 
   addButtonClicked(){
+    if (this.numberSelected === 0) {
+      alert('Quantity Value is Zero!');
+    } else {
+      if (this.numberSelected > 1) {
+        //this.orderTotalPrice = this.orderTotalPrice + (this.numberSelected * )
+      } else {
 
+      }
+      this.orders.push({toppingName: this.toppingsUpdate, toppingPrice: this.toppingsPrice,
+        sizeName: this.sizeUpdate,
+        sizePrice: this.sizePrice,
+        orderQuantity: this.numberSelected,
+        totalPrice: this.orderTotalPrice});
+    }
   }
 }

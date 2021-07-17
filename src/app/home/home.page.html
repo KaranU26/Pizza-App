@@ -85,22 +85,18 @@
       <ion-label>Topping:</ion-label>
       <ion-label> {{toppingsUpdate}}</ion-label>
       <ion-list>
-        <ion-item>
-          <ion-select placeholder="Toppings" (ionChange)="toppingValue($event)">
-            <ion-select-option *ngFor="let topping of toppings" >{{topping.name}}</ion-select-option>
-          </ion-select>
-        </ion-item>
+          <ion-item placeholder="Toppings"  *ngFor="let topping of toppings"  (click)="selectToppingValue(topping)">
+            <ion-label>{{topping.name}}</ion-label>
+          </ion-item>
       </ion-list>
     </ion-col>
     <ion-col>
       <ion-label>Size:</ion-label>
       <ion-label > {{sizeUpdate}}</ion-label>
       <ion-list>
-        <ion-item>
-          <ion-select placeholder="Sizes" (ionChange)="sizeValue($event)">
-            <ion-select-option *ngFor="let size of sizes">{{size.name}}</ion-select-option>
-          </ion-select>
-        </ion-item>
+          <ion-item *ngFor="let size of sizes" placeholder="Sizes" (click)="selectSizeValue(size)">
+            <ion-label>{{size.name}}</ion-label>
+          </ion-item>
       </ion-list>
     </ion-col>
   </ion-row>

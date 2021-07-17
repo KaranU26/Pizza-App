@@ -13,7 +13,9 @@ import { OrderService } from '../orders/orders.service';
 })
 export class HomePage {
   toppings: Toppings[];
+  orderList: Array<Orders> = [];
   sizes: Sizes[];
+  order: Orders = {};
   orders: Orders[];
   sizeUpdate: string;
   toppingsUpdate: string;
@@ -22,8 +24,9 @@ export class HomePage {
   toppingsPrice: number;
   sizePrice: number;
   orderTotalPrice: number;
+  currentQuantity: number;
   errorMessage: 'Quantity Value is 0';
-  constructor(private toppingsService: ToppingsService, private sizesService: SizesService) {}
+  constructor(private toppingsService: ToppingsService, private sizesService: SizesService, private orderService: OrderService) {}
 
   ngOnInit(){
     this.toppings = this.toppingsService.getAllToppings();
@@ -33,7 +36,7 @@ export class HomePage {
   ionViewWillEnter(){ }
 
   sizeValue($event){
-    this.sizeUpdate = $event.target.value;
+    //this.sizeUpdate = $event.target.value;
 
   }
 
@@ -77,20 +80,38 @@ export class HomePage {
     this.numberSelected = 0;
   }
 
+  selectSizeValue(size){
+    this.sizeUpdate = size.name;
+    this.sizePrice = size.price;
+  }
+
+  selectToppingValue(topping){
+    this.toppingsUpdate = topping.name;
+    this.toppingsPrice = topping.price;
+  }
+
   addButtonClicked(){
+
     if (this.numberSelected === 0) {
       alert('Quantity Value is Zero!');
     } else {
       if (this.numberSelected > 1) {
-        //this.orderTotalPrice = this.orderTotalPrice + (this.numberSelected * )
+        this.orderTotalPrice = this.orderTotalPrice + (this.numberSelected * this.sizePrice) + (this.numberSelected * this.toppingsPrice);
+        this.currentQuantity = this.currentQuantity + this.numberSelected;
       } else {
-
+        this.orderTotalPrice = this.orderTotalPrice + this.sizePrice + this.toppingsPrice;
+        this.currentQuantity = this.currentQuantity + this.numberSelected;
       }
-      this.orders.push({toppingName: this.toppingsUpdate, toppingPrice: this.toppingsPrice,
-        sizeName: this.sizeUpdate,
-        sizePrice: this.sizePrice,
-        orderQuantity: this.numberSelected,
-        totalPrice: this.orderTotalPrice});
+
+
+      this.order.toppingName = this.toppingsUpdate;
+      this.order.toppingPrice = this.toppingsPrice;
+      this.order.sizeName = this.sizeUpdate;
+      this.order.sizePrice = this.sizePrice;
+      this.order.orderQuantity = this.currentQuantity;
+      this.order.totalPrice = this.orderTotalPrice;
+      this.orderService.addOrder(this.order);
     }
+    //alert('Your order now has ' + this.currentQuantity + 'and the total is ' + this.orderTotalPrice + ' CND');
   }
 }

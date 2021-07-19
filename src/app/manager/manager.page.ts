@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-recipe-details',
+  selector: 'app-manager',
   templateUrl: './manager.page.html',
   styleUrls: ['./manager.page.scss'],
 })

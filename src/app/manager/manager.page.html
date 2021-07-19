@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="danger">
+    <ion-title>
+      Manager
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-col>
+    <ion-button expand="block" [routerLink]="['./CurrentOrders']" routerLinkActive="router-link-active">Check Current Orders</ion-button>
+    <ion-button expand="block" [routerLink]="['./UpdateOrders']" routerLinkActive="router-link-active">Update Current Order</ion-button>
+    <ion-button expand="block" [routerLink]="['./PreviousOrders']" routerLinkActive="router-link-active">Previous Orders</ion-button>
+    <ion-button expand="block" [routerLink]="['./manager']" routerLinkActive="router-link-active">New Orders</ion-button>
+  </ion-col>
+  </ion-grid>
+</ion-content>
+2

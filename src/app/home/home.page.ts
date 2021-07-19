@@ -15,7 +15,7 @@ export class HomePage {
   toppings: Toppings[];
   orderList: Array<Orders> = [];
   sizes: Sizes[];
-  order: Orders = {};
+  order: Orders;
   orders: Orders[];
   sizeUpdate: string;
   toppingsUpdate: string;

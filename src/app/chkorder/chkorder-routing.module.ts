@@ -1,15 +1,11 @@
-import { CheckOrderPage } from './../chkorder/chkorder.page';
+import { CheckOrderPage } from './chkorder.page';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ManagerPage } from './manager.page';
+
 
 const routes: Routes = [
   {
     path: '',
-    component: ManagerPage
-  },
-  {
-    path: 'chkorder',
     component: CheckOrderPage
   }
 ];
@@ -18,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ManagerPageRoutingModule {}
+export class CheckOrderPageRoutingModule {}

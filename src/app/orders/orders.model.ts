@@ -5,4 +5,5 @@ export interface Orders {
   sizePrice: number;
   orderQuantity: number;
   totalPrice: number;
+
 }

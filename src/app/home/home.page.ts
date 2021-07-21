@@ -15,7 +15,7 @@ export class HomePage {
   toppings: Toppings[];
   orderList: Array<Orders> = [];
   sizes: Sizes[];
-  order: Orders;
+  order: Orders = {toppingName: '', toppingPrice: 0, sizePrice: 0, sizeName: '', orderQuantity: 0, totalPrice: 0};
   orders: Orders[];
   sizeUpdate: string;
   toppingsUpdate: string;
@@ -23,8 +23,8 @@ export class HomePage {
   numberSelected: number;
   toppingsPrice: number;
   sizePrice: number;
-  orderTotalPrice: number;
-  currentQuantity: number;
+  orderTotalPrice = 0;
+  currentQuantity = 0;
   errorMessage: 'Quantity Value is 0';
   constructor(private toppingsService: ToppingsService, private sizesService: SizesService, private orderService: OrderService) {}
 
@@ -112,6 +112,12 @@ export class HomePage {
       this.order.totalPrice = this.orderTotalPrice;
       this.orderService.addOrder(this.order);
     }
-    //alert('Your order now has ' + this.currentQuantity + 'and the total is ' + this.orderTotalPrice + ' CND');
+    alert('Your order now has ' + this.currentQuantity + ' and the total is ' + this.orderTotalPrice + ' CND');
+    console.log(this.order.toppingName);
+    console.log(this.order.toppingPrice);
+    console.log(this.order.sizeName);
+    console.log(this.order.sizePrice);
+    console.log(this.order.orderQuantity);
+    console.log(this.order.totalPrice);
   }
 }

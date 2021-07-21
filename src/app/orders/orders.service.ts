@@ -7,12 +7,13 @@ import { Orders } from './orders.model';
 
 export class OrderService {
 
-  private orders: Orders[];
+  public orders: Orders[] = [];
 
   constructor(){
-
   }
+
   addOrder(order: Orders){
+
     this.orders.push(order);
   }
 }

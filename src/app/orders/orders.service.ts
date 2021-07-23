@@ -16,4 +16,9 @@ export class OrderService {
 
     this.orders.push(order);
   }
+
+  getAllOrders(){
+    return this.orders;
+  }
+
 }

@@ -5,6 +5,7 @@ import { ToppingsService } from '../toppings/toppings.service';
 import { Sizes } from '../size/sizes.model';
 import { SizesService } from '../size/sizes.service';
 import { OrderService } from '../orders/orders.service';
+import { Pizzas } from '../pizza/pizza.model';
 
 @Component({
   selector: 'app-home',
@@ -15,8 +16,8 @@ export class HomePage {
   toppings: Toppings[];
   orderList: Array<Orders> = [];
   sizes: Sizes[];
-  order: Orders = {toppingName: '', toppingPrice: 0, sizePrice: 0, sizeName: '', orderQuantity: 0, totalPrice: 0};
-  orders: Orders[];
+  pizzaOrder: Pizzas = {toppingName: '', toppingPrice: 0, sizeName: '', sizePrice: 0, pizzaPrice: 0, pizzaQuantity: 0};
+  order: Orders;
   sizeUpdate: string;
   toppingsUpdate: string;
   itemSelected: any;
@@ -26,6 +27,7 @@ export class HomePage {
   orderTotalPrice = 0;
   currentQuantity = 0;
   errorMessage: 'Quantity Value is 0';
+  pricePizza: number;
   constructor(private toppingsService: ToppingsService, private sizesService: SizesService, private orderService: OrderService) {}
 
   ngOnInit(){
@@ -34,16 +36,6 @@ export class HomePage {
   }
 
   ionViewWillEnter(){ }
-
-  sizeValue($event){
-    //this.sizeUpdate = $event.target.value;
-
-  }
-
-
-  toppingValue($event){
-    this.toppingsUpdate = $event.target.value;
-  }
 
   buttonOneClicked(){
     this.numberSelected = 1;
@@ -98,26 +90,31 @@ export class HomePage {
       if (this.numberSelected > 1) {
         this.orderTotalPrice = this.orderTotalPrice + (this.numberSelected * this.sizePrice) + (this.numberSelected * this.toppingsPrice);
         this.currentQuantity = this.currentQuantity + this.numberSelected;
+        this.pricePizza = (this.numberSelected * this.sizePrice) + (this.numberSelected * this.toppingsPrice);
       } else {
         this.orderTotalPrice = this.orderTotalPrice + this.sizePrice + this.toppingsPrice;
         this.currentQuantity = this.currentQuantity + this.numberSelected;
+        this.pricePizza = (this.numberSelected * this.sizePrice) + (this.numberSelected * this.toppingsPrice);
       }
 
+      /*this.pizzaOrder.toppingName = this.toppingsUpdate;
+      this.pizzaOrder.toppingPrice = this.toppingsPrice;
+      this.pizzaOrder.sizeName = this.sizeUpdate;
+      this.pizzaOrder.sizePrice = this.sizePrice;
+      this.pizzaOrder.pizzaPrice = this.pricePizza;
+      this.pizzaOrder.pizzaQuantity = this.numberSelected;*/
 
+      this.order = new Orders();
       this.order.toppingName = this.toppingsUpdate;
       this.order.toppingPrice = this.toppingsPrice;
       this.order.sizeName = this.sizeUpdate;
       this.order.sizePrice = this.sizePrice;
       this.order.orderQuantity = this.currentQuantity;
       this.order.totalPrice = this.orderTotalPrice;
+      this.order.pizzaPrice = this.pricePizza;
       this.orderService.addOrder(this.order);
     }
     alert('Your order now has ' + this.currentQuantity + ' and the total is ' + this.orderTotalPrice + ' CND');
-    console.log(this.order.toppingName);
-    console.log(this.order.toppingPrice);
-    console.log(this.order.sizeName);
-    console.log(this.order.sizePrice);
-    console.log(this.order.orderQuantity);
-    console.log(this.order.totalPrice);
+
   }
 }

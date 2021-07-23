@@ -1,3 +1,5 @@
+import { Orders } from './../orders/orders.model';
+import { OrderService } from './../orders/orders.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -7,10 +9,15 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./chkorder.page.scss'],
 })
 export class CheckOrderPage implements OnInit {
-  constructor() { }
+
+  orders: Orders[];
+  tPrice: number;
+  i: number;
+  constructor(private orderservice: OrderService) {
+   }
 
   ngOnInit() {
-
+    this.orders = this.orderservice.getAllOrders();
   }
 
 }

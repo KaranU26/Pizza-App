@@ -5,3 +5,31 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let order of orders">
+      <ion-grid>
+    <ion-row>
+      <ion-label>Pizza Price: </ion-label>
+      <ion-label>
+        {{order.pizzaPrice}}
+      </ion-label>
+    </ion-row>
+    <ion-row>
+      <ion-label>Size: </ion-label>
+      <ion-label>
+        {{order.sizeName}}
+      </ion-label>
+      <ion-label> Topping: </ion-label>
+      <ion-label>
+        {{order.toppingName}}
+      </ion-label>
+    </ion-row>
+    <ion-row>
+        {{order.orderQuantity}}
+    </ion-row>
+    </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>

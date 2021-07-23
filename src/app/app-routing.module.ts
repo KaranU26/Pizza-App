@@ -1,3 +1,5 @@
+import { CheckOrderPage } from './chkorder/chkorder.page';
+import { ManagerPage } from './manager/manager.page';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
@@ -11,6 +13,12 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'manager', component: ManagerPage
+  },
+  {
+    path: 'checkorder', component: CheckOrderPage
+  }
 ];
 
 @NgModule({
@@ -20,3 +28,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+export const routingComponents = [ManagerPage, CheckOrderPage];

@@ -9,7 +9,7 @@ const routes: Routes = [
     component: ManagerPage
   },
   {
-    path: 'chkorder',
+    path: 'checkorder',
     component: CheckOrderPage
   }
 ];

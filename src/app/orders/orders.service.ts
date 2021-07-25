@@ -21,4 +21,8 @@ export class OrderService {
     return this.orders;
   }
 
+  clearOrders(){
+    this.orders = [];
+  }
+
 }

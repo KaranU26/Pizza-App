@@ -5,7 +5,7 @@ import { ToppingsService } from '../toppings/toppings.service';
 import { Sizes } from '../size/sizes.model';
 import { SizesService } from '../size/sizes.service';
 import { OrderService } from '../orders/orders.service';
-import { Pizzas } from '../pizza/pizza.model';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +16,6 @@ export class HomePage {
   toppings: Toppings[];
   orderList: Array<Orders> = [];
   sizes: Sizes[];
-  pizzaOrder: Pizzas = {toppingName: '', toppingPrice: 0, sizeName: '', sizePrice: 0, pizzaPrice: 0, pizzaQuantity: 0};
   order: Orders;
   sizeUpdate: string;
   toppingsUpdate: string;
@@ -28,7 +27,8 @@ export class HomePage {
   currentQuantity = 0;
   errorMessage: 'Quantity Value is 0';
   pricePizza: number;
-  constructor(private toppingsService: ToppingsService, private sizesService: SizesService, private orderService: OrderService) {}
+  constructor(public alertCtrl: AlertController, private toppingsService: ToppingsService,
+    private sizesService: SizesService, private orderService: OrderService) {}
 
   ngOnInit(){
     this.toppings = this.toppingsService.getAllToppings();
@@ -36,6 +36,30 @@ export class HomePage {
   }
 
   ionViewWillEnter(){ }
+
+  async showAlert(){
+    const alert = await this.alertCtrl.create({
+      header: 'Success!',
+      subHeader: 'Pizza Added',
+      message: 'Your Order has ' + this.currentQuantity + ' pizzas, the total is ' + this.orderTotalPrice + ' CDN',
+      buttons: ['OK']
+    });
+    await alert.present();
+    const result = await alert.onDidDismiss();
+    console.log(result);
+  }
+
+  async zeroAlert(){
+    const alert = await this.alertCtrl.create({
+      header: 'Success!',
+      subHeader: 'Pizza Added',
+      message: 'Your Order has ' + this.currentQuantity + ' pizzas, the total is ' + this.orderTotalPrice + ' CDN',
+      buttons: ['OK']
+    });
+    await alert.present();
+    const result = await alert.onDidDismiss();
+    console.log(result);
+  }
 
   buttonOneClicked(){
     this.numberSelected = 1;
@@ -84,8 +108,12 @@ export class HomePage {
 
   addButtonClicked(){
 
+    if (this.orderService.orders.length === 0) {
+      this.currentQuantity = 0;
+      this.orderTotalPrice = 0;
+    }
     if (this.numberSelected === 0) {
-      alert('Quantity Value is Zero!');
+
     } else {
       if (this.numberSelected > 1) {
         this.orderTotalPrice = this.orderTotalPrice + (this.numberSelected * this.sizePrice) + (this.numberSelected * this.toppingsPrice);
@@ -97,13 +125,6 @@ export class HomePage {
         this.pricePizza = (this.numberSelected * this.sizePrice) + (this.numberSelected * this.toppingsPrice);
       }
 
-      /*this.pizzaOrder.toppingName = this.toppingsUpdate;
-      this.pizzaOrder.toppingPrice = this.toppingsPrice;
-      this.pizzaOrder.sizeName = this.sizeUpdate;
-      this.pizzaOrder.sizePrice = this.sizePrice;
-      this.pizzaOrder.pizzaPrice = this.pricePizza;
-      this.pizzaOrder.pizzaQuantity = this.numberSelected;*/
-
       this.order = new Orders();
       this.order.toppingName = this.toppingsUpdate;
       this.order.toppingPrice = this.toppingsPrice;
@@ -114,7 +135,6 @@ export class HomePage {
       this.order.pizzaPrice = this.pricePizza;
       this.orderService.addOrder(this.order);
     }
-    alert('Your order now has ' + this.currentQuantity + ' and the total is ' + this.orderTotalPrice + ' CND');
-
+    this.showAlert();
   }
 }

@@ -3,12 +3,19 @@
     <ion-title>
       Check Current Order
     </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list>
+  <ion-list show-delete="show-delete">
+    <ion-item-sliding>
     <ion-item *ngFor="let order of orders">
+      <ion-item-option>
+        <button color="danger" (click)="removeOrder(order)">Delete</button>
+      </ion-item-option>
       <ion-grid>
     <ion-row>
       <ion-label>Pizza Price: </ion-label>
@@ -21,15 +28,21 @@
       <ion-label>
         {{order.sizeName}}
       </ion-label>
-      <ion-label> Topping: </ion-label>
-      <ion-label>
-        {{order.toppingName}}
-      </ion-label>
     </ion-row>
     <ion-row>
+      <ion-label> Topping: </ion-label>
+        {{order.toppingName}}
+    </ion-row>
+    <ion-row>
+      <ion-label>Quantity:  </ion-label>
         {{order.orderQuantity}}
     </ion-row>
     </ion-grid>
     </ion-item>
+  </ion-item-sliding>
   </ion-list>
+  <ion-button (click)="placedOrder()">Place Order</ion-button>
+  <ion-label>
+    {{totalprc}}
+</ion-label>
 </ion-content>

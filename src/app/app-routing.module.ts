@@ -2,6 +2,7 @@ import { CheckOrderPage } from './chkorder/chkorder.page';
 import { ManagerPage } from './manager/manager.page';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { PlacedOrderPage } from './placedorder/placedorder.page';
 
 const routes: Routes = [
   {
@@ -18,6 +19,9 @@ const routes: Routes = [
   },
   {
     path: 'checkorder', component: CheckOrderPage
+  },
+  {
+    path: 'placedorders', component: PlacedOrderPage
   }
 ];
 
@@ -28,4 +32,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [ManagerPage, CheckOrderPage];
+export const routingComponents = [ManagerPage, CheckOrderPage, PlacedOrderPage];

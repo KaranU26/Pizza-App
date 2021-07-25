@@ -3,6 +3,9 @@
     <ion-title>
       Manager
     </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -10,10 +13,9 @@
   <ion-grid>
     <ion-col>
     <ion-button expand="block" [routerLink]="['/checkorder']" routerLinkActive="router-link-active">Check Current Orders</ion-button>
-    <ion-button expand="block" [routerLink]="['./UpdateOrders']" routerLinkActive="router-link-active">Update Current Order</ion-button>
-    <ion-button expand="block" [routerLink]="['./PreviousOrders']" routerLinkActive="router-link-active">Previous Orders</ion-button>
-    <ion-button expand="block" [routerLink]="['./manager']" routerLinkActive="router-link-active">New Orders</ion-button>
+    <ion-button expand="block" [routerLink]="['/home']" routerLinkActive="router-link-active">Update Current Order</ion-button>
+    <ion-button expand="block" [routerLink]="['/placedorders']" routerLinkActive="router-link-active">Previous Orders</ion-button>
+    <ion-button expand="block" [routerLink]="['/home']" routerLinkActive="router-link-active" (click)="newOrder()">New Orders</ion-button>
   </ion-col>
   </ion-grid>
 </ion-content>
-2

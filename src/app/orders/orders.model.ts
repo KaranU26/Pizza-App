@@ -1,5 +1,4 @@
 
-import { Pizzas } from "../pizza/pizza.model";
 
 export class Orders {
   toppingName: string;
@@ -9,7 +8,6 @@ export class Orders {
   orderQuantity: number;
   totalPrice: number;
   pizzaPrice: number;
-  //pizza: Pizzas[];
 
   constructor(){
 

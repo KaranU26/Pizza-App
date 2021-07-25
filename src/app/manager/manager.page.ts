@@ -1,3 +1,4 @@
+import { OrderService } from './../orders/orders.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -7,10 +8,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./manager.page.scss'],
 })
 export class ManagerPage implements OnInit {
-  constructor() { }
+  constructor(private orderservice: OrderService) { }
 
   ngOnInit() {
 
+  }
+
+  newOrder(){
+    this.orderservice.clearOrders();
   }
 
 }
